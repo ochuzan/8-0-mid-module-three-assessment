@@ -1,4 +1,5 @@
 import { Component } from "react";
+import formatPrice from "../helpers/formatPrice";
 
 class CheckoutForm extends Component {
     constructor(){
@@ -32,17 +33,22 @@ class CheckoutForm extends Component {
         }
 
         if(creditCardNum.length !== 16){
-            alert("Credit card number is not valid")
+            isValid = false;
+            alert("Credit card number is not valid");
+            return;
         }
-
+        
         if(zipCodeNum.length !== 5){
-            alert("Zip code is not valid")
+            isValid = false;
+            alert("Zip code is not valid");
+            return;
         }
-
+        
         if (!isValid){
             alert("Input is not valid")
+            return;
         } else {
-            alert(`Yay! Purchase complete! You will be chaged a total of ${this.props.total}`)
+            alert(`Yay! Purchase complete! You will be charged a total of ${formatPrice(this.props.total)}`)
         }
     }
 

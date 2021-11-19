@@ -61,7 +61,6 @@ class App extends Component {
           </div>
           <h3>Subtotal: {formatPrice(this.state.subtotal)}</h3>
           <h3>Tax: {formatPrice(this.state.tax)}</h3>
-          {/* <h3>Total: {formatPrice(this.state.subtotal + this.state.tax)}</h3> */}
           <h3>Total: {formatPrice(this.state.total)}</h3>
           
           <div>
