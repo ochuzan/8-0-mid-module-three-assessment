@@ -1,5 +1,6 @@
-import { Component } from "react";
 import "./App.css";
+import { Component } from "react";
+import Cart from "./components/Cart";
 import CheckoutForm from "./components/CheckoutForm";
 import ProductCard from "./components/ProductCard";
 import productData from "./data/productData";
@@ -37,11 +38,12 @@ class App extends Component {
       )
     });
 
-    let cartArr = this.state.cartList.map(item => {
+    let cartArr = this.state.cartList.map((item, i)=> {
       return (
-        <ul>
-            <li>{item.name}: {formatPrice(item.price)}</li>
-        </ul>
+        <Cart 
+          key = {i + '-' + item}
+          item = {item}
+        />
       )
     })
 
@@ -62,14 +64,12 @@ class App extends Component {
           <h3>Subtotal: {formatPrice(this.state.subtotal)}</h3>
           <h3>Tax: {formatPrice(this.state.tax)}</h3>
           <h3>Total: {formatPrice(this.state.total)}</h3>
-          
+
           <div>
           <h2>Checkout</h2>
           <CheckoutForm total={this.state.total}/>
           </div>
         </div>
-
-        
       </div>
         
     );  

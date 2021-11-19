@@ -2,9 +2,6 @@ import { Component } from "react";
 import formatPrice from "../helpers/formatPrice";
 
 class ProductCard extends Component {
-    constructor(){
-        super();
-    }
     render(){
         let { name, price, description, img } = this.props.product;
         return(
