@@ -1,5 +1,6 @@
 import { Component } from "react";
 import "./App.css";
+import CheckoutForm from "./components/CheckoutForm";
 import ProductCard from "./components/ProductCard";
 import productData from "./data/productData";
 import formatPrice from "./helpers/formatPrice";
@@ -12,15 +13,16 @@ class App extends Component {
       cartList: [],
       subtotal: 0,
       tax: 0,
+      total: 0
     }
   }
 
   handleAddToCart = (product) => {
-    let total = 0
     this.setState({
       cartList: [...this.state.cartList, product],
       subtotal: this.state.subtotal + product.price,
-      tax: this.state.tax + (product.price * 0.05)
+      tax: this.state.tax + (product.price * 0.05),
+      total: this.state.total + product.price + (product.price * 0.05)
     })
   }
 
@@ -59,11 +61,12 @@ class App extends Component {
           </div>
           <h3>Subtotal: {formatPrice(this.state.subtotal)}</h3>
           <h3>Tax: {formatPrice(this.state.tax)}</h3>
-          <h3>Total: {formatPrice(this.state.subtotal + this.state.tax)}</h3>
+          {/* <h3>Total: {formatPrice(this.state.subtotal + this.state.tax)}</h3> */}
+          <h3>Total: {formatPrice(this.state.total)}</h3>
           
           <div>
           <h2>Checkout</h2>
-          
+          <CheckoutForm total={this.state.total}/>
           </div>
         </div>
 
